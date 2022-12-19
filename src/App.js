@@ -1,12 +1,16 @@
 import JoinForm from "./JoinForm";
+import Header from "./Header";
+import "./styles.css";
 import Conference from "./Conference";
 import { useEffect } from "react";
 import {
   selectIsConnectedToRoom,
   useHMSActions,
-  useHMSStore,
+  useHMSStore
 } from "@100mslive/react-sdk";
-function App() {
+import Footer from "./Footer";
+
+export default function App() {
   const isConnected = useHMSStore(selectIsConnectedToRoom);
   const hmsActions = useHMSActions();
 
@@ -20,10 +24,15 @@ function App() {
 
   return (
     <div className="App">
-      
-      {isConnected ? <Conference /> : <JoinForm />}
+      <Header />
+      {isConnected ? (
+        <>
+          <Conference />
+          <Footer />
+        </>
+      ) : (
+        <JoinForm />
+      )}
     </div>
   );
 }
-
-export default App;

@@ -1,27 +1,25 @@
-import { useState } from "react";
 import { useHMSActions } from "@100mslive/react-sdk";
+import { useState } from "react";
 
-function JoinForm() {
+function Join() {
   const hmsActions = useHMSActions();
   const [inputValues, setInputValues] = useState({
     name: "",
-    token: "",
+    token: ""
   });
 
   const handleInputChange = (e) => {
     setInputValues((prevValues) => ({
       ...prevValues,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     }));
-
-    console.log(inputValues);
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await hmsActions.join({
+    hmsActions.join({
       userName: inputValues.name,
-      authToken: inputValues.token,
+      authToken: inputValues.token
     });
   };
 
@@ -55,4 +53,4 @@ function JoinForm() {
   );
 }
 
-export default JoinForm;
+export default Join;
